@@ -1,0 +1,27 @@
+{
+  "name": "nuxt-auth-example",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "autoprefixer": "^10.4.16",
+    "nuxt": "^3.9.0",
+    "postcss": "^8.4.33",
+    "prisma": "^5.7.1",
+    "tailwindcss": "^3.4.1",
+    "vue": "^3.4.5",
+    "vue-router": "^4.2.5"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.7.1",
+    "bcrypt": "^5.1.1",
+    "jsonwebtoken": "^9.0.2"
+  }
+}
