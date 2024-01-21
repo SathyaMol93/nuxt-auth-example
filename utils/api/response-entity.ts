@@ -4,7 +4,7 @@ export interface ResponseEntity {
   status: HttpStatus;
   statusText: string;
   headers?: { [key: string]: string };
-  data?: string | object;
+  data?: string | object | null;
 }
 
 function getStatusText(statusCode: HttpStatus): string {
@@ -86,7 +86,7 @@ function getStatusText(statusCode: HttpStatus): string {
 function httpResponse(
   status: HttpStatus,
   headers?: { [key: string]: string },
-  data?: string | object
+  data?: string | object | null
 ): ResponseEntity {
   return {
     status,

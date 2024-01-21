@@ -1,25 +1,25 @@
+import type { User } from "~/utils/api/models/user.model";
 import type RoleName from "../enums/role-name.enum";
 import type RoleStatus from "../enums/role-status.enum";
-import type UserStatus from "../enums/user-status.enum";
 
 export interface AuthConfigModel {
-  id?: number;
-  client_id?: string | null;
-  client_secret?: string | null;
-  token_secret?: string | null;
-  refresh_token_secret?: string | null;
-  token_expires_in?: number;
-  refresh_token_expires?: number;
-  password_salt?: number;
+  id: number;
+  client_id: string;
+  client_secret: string;
+  token_secret: string;
+  refresh_token_secret: string;
+  token_expires_in: number;
+  refresh_token_expires: number;
+  password_salt: number;
   created_date?: Date | null;
   updated_date?: Date | null;
 }
 
 export interface AuthPayload {
-  first_name?: string | null;
-  last_name?: string | null;
-  email?: string | null;
-  role?: string | null;
+  first_name: string;
+  last_name: string;
+  email: string;
+  role: string;
 }
 
 export interface AuthRequestModel {
@@ -35,7 +35,7 @@ export interface AuthResponse {
 export interface Role {
   id: number;
   role_name: RoleName;
-  status?: RoleStatus | null;
+  status: RoleStatus;
   created_date?: Date | null;
   updated_date?: Date | null;
   user: User[];
@@ -46,24 +46,11 @@ export interface SignupRequestModel extends AuthRequestModel {
   lastName: string;
 }
 
-export interface User {
-  id: number;
-  first_name?: string | null;
-  last_name?: string | null;
-  email?: string | null;
-  password?: string | null;
-  status?: UserStatus | null;
-  created_date?: Date | null;
-  updated_date?: Date | null;
-  roleId: number;
-  role: Role;
-}
-
 export interface LoginSessions {
   id: number;
-  email?: string | null;
-  access_token?: string | null;
-  refresh_token?: string | null;
+  email: string;
+  access_token: string;
+  refresh_token: string;
   created_date?: Date | null;
   updated_date?: Date | null;
 }

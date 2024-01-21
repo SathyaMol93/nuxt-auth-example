@@ -12,10 +12,10 @@ datasource db {
 
 model auth_config {
   id                    Int       @id @unique(map: "Auth_Config_id_key") @default(autoincrement())
-  client_id             String?
-  client_secret         String?
-  token_secret          String?
-  refresh_token_secret  String?
+  client_id             String
+  client_secret         String
+  token_secret          String
+  refresh_token_secret  String
   token_expires_in      Int       @default(0)
   refresh_token_expires Int       @default(0)
   password_salt         Int       @default(0)
@@ -24,16 +24,16 @@ model auth_config {
 }
 
 model user {
-  id           Int          @id @unique(map: "User_id_key") @default(autoincrement())
-  first_name   String?
-  last_name    String?
-  email        String?      @unique(map: "User_email_key")
-  password     String?
-  status       user_status? @default(ACTIVE)
-  created_date DateTime?    @default(now()) @db.DateTime(0)
-  updated_date DateTime?    @default(now()) @updatedAt
+  id           Int         @id @unique(map: "User_id_key") @default(autoincrement())
+  first_name   String
+  last_name    String
+  email        String      @unique(map: "User_email_key")
+  password     String
+  status       user_status @default(ACTIVE)
+  created_date DateTime?   @default(now()) @db.DateTime(0)
+  updated_date DateTime?   @default(now()) @updatedAt
   roleId       Int
-  role         role         @relation(fields: [roleId], references: [id], map: "User_roleId_fkey")
+  role         role        @relation(fields: [roleId], references: [id], map: "User_roleId_fkey")
 
   @@index([id, email, first_name, last_name, status], map: "User_id_email_first_name_last_name_status_idx")
   @@index([roleId], map: "User_roleId_fkey")
@@ -42,7 +42,7 @@ model user {
 model role {
   id           Int            @id @unique(map: "Role_id_key") @default(autoincrement())
   role_name    role_role_name @default(USER)
-  status       role_status?   @default(ACTIVE)
+  status       role_status    @default(ACTIVE)
   created_date DateTime?      @default(now()) @db.DateTime(0)
   updated_date DateTime?      @default(now()) @updatedAt
   user         user[]
@@ -52,9 +52,9 @@ model role {
 
 model login_sessions {
   id            Int       @id @unique(map: "Login_Sessions_id_key") @default(autoincrement())
-  email         String?   @unique(map: "User_email_key")
-  access_token  String?   @db.VarChar(2000)
-  refresh_token String?   @db.VarChar(2000)
+  email         String    @unique(map: "User_email_key")
+  access_token  String    @db.VarChar(2000)
+  refresh_token String    @db.VarChar(2000)
   created_date  DateTime? @default(now()) @db.DateTime(0)
   updated_date  DateTime? @default(now()) @updatedAt
 }
