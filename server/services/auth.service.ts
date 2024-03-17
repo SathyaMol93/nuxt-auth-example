@@ -151,7 +151,7 @@ export async function refresh(event: H3Event): Promise<ResponseEntity> {
 
     if (authConfig !== null) {
       // Get token payload
-      const decode = await checkToken(
+      const decode: AuthPayload = await checkToken(
         refresh_token,
         authConfig.refresh_token_secret
       );
@@ -249,7 +249,7 @@ export async function checkAuthentication(
 
     if (authConfig !== null) {
       // Get token payload
-      const decode = await checkToken(access_token, authConfig.token_secret);
+      const decode: AuthPayload = await checkToken(access_token, authConfig.token_secret);
       // Get user for token
       const user: User | null = await getUserByEmail(decode.email);
       // Get login session for token
@@ -308,7 +308,7 @@ export async function getAuthorizedUser(
     }
 
     //remove Bearer from token
-    const refresh_token = bearer_token.substring(7);
+    const access_token = bearer_token.substring(7);
 
     // fetch auth configuration
     const authConfig: AuthConfigModel | null = await getAuthConfig(
@@ -318,7 +318,7 @@ export async function getAuthorizedUser(
 
     if (authConfig !== null) {
       // Get token payload
-      const decode = await checkToken(refresh_token, authConfig.token_secret);
+      const decode: AuthPayload = await checkToken(access_token, authConfig.token_secret);
       // Get user for token
       const user: User | null = await getUserByEmail(decode.email);
       const userDTO: UserDTO | null =
